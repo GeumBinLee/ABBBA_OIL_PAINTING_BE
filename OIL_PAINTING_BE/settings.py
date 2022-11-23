@@ -29,7 +29,9 @@ INSTALLED_APPS = [
     'users',
     'painters',
     'inquiries',
+    'image_optimizer',
 ]
+OPTIMIZED_IMAGE_METHOD = "pillow"
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -127,8 +129,10 @@ AUTH_USER_MODEL = "users.User"
 CORS_ALLOW_ALL_ORIGINS = True
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=100),
-    'REFRESH_TOKEN_LIFETIME': timedelta(minutes=50),
+
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': False,
     'UPDATE_LAST_LOGIN': False,
@@ -160,3 +164,6 @@ SIMPLE_JWT = {
 
 MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
+
+STATIC_ROOT = BASE_DIR / "static"
+STATIC_URL = "/static/"
