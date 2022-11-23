@@ -13,4 +13,4 @@ class UserRegistrationAPIViewTestCase(APITestCase):
             "password_check": "password1", # 동일한 비밀번호 입력
         }
         response = self.client. post(url, user_data)
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, 201) # 테스트 성공완료
