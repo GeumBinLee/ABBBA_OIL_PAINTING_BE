@@ -1,5 +1,6 @@
 </br>
 <p align="center"><img width="671" alt="Screen Shot 2022-11-28 at 10 15 30 AM" src="https://user-images.githubusercontent.com/18550082/204172506-4d73abb6-f2cc-4a5c-9655-856d9465899a.png"></p>
+</br>
 
 ## Marvel Pics
 </br>
@@ -10,7 +11,6 @@
 - FE Repository Info: [https://github.com/GeumBinLee/ABBBA_OIL_PAINTING_FE](https://github.com/GeumBinLee/ABBBA_OIL_PAINTING_FE)
 
 </br></br>
-</br>
 
 #### **프로젝트 개요**
 

@@ -156,7 +156,7 @@ def main():
     p.add_argument('content', type=str, help='the content image')
     p.add_argument('styles', type=str, nargs='+', metavar='style', help='the style images')
     p.add_argument('--output', '-o, type=str', default='out.png', 
-                   help='the output image')# 결과물 파일 이름
+                   help='the output image') # 결과물 파일 옵션
     p.add_argument('--style-weights', '-sw', type=float, nargs='+', default=None,
                    metavar='STYLE_WEIGHT', help='the relative weights for each style image')
     p.add_argument('--devices', type=str, default=[], nargs='+',
@@ -270,5 +270,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
-    # python cli.py cat.png vg.jpg -s 256 --initial-iterations 50

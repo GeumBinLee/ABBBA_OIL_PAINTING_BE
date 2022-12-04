@@ -1,4 +1,3 @@
-
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
@@ -15,7 +14,6 @@ class InquiryView(APIView):
             inquiry = Inquiry.objects.all()
             serializer = InquirySerializer(inquiry, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
-
         else:
             inquiry = Inquiry.objects.filter(user = request.user)
             serializer = InquirySerializer(inquiry, many=True)
@@ -36,7 +34,7 @@ class InquiryDetailView(APIView):
     
     def put(self,request,inquiry_id):
 
-        inquiry = get_object_or_404(Inquiry, id= inquiry_id)
+        inquiry = get_object_or_404(Inquiry, id = inquiry_id)
 
         if request.user == inquiry.user:
             serializer = InquiryCreateSerializer(inquiry, data = request.data)
@@ -46,36 +44,36 @@ class InquiryDetailView(APIView):
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
-            return Response("권한이 없습니다!", status = status.HTTP_403_FORBIDDEN)
+            return Response("권한이 없습니다!", status=status.HTTP_403_FORBIDDEN)
 
     def get(self, request, inquiry_id):
-        inquiry = get_object_or_404(Inquiry, id= inquiry_id)
+        inquiry = get_object_or_404(Inquiry, id = inquiry_id)
         if request.user.is_admin == 1:
             serializer = InquirySerializer(inquiry)
-            return Response(serializer.data, status = status.HTTP_200_OK)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         else:
-            if  request.user ==inquiry.user:
+            if  request.user == inquiry.user:
                 serializer = InquirySerializer(inquiry)
-                return Response(serializer.data, status = status.HTTP_200_OK)
+                return Response(serializer.data, status=status.HTTP_200_OK)
             else:
-                return Response("권한이 없습니다!", status = status.HTTP_403_FORBIDDEN)
+                return Response("권한이 없습니다!", status=status.HTTP_403_FORBIDDEN)
 
     def delete(self,request,inquiry_id):
-        inquiry = get_object_or_404(Inquiry, id= inquiry_id)
+        inquiry = get_object_or_404(Inquiry, id = inquiry_id)
         if request.user == inquiry.user:
             inquiry.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         else:
-            return Response("권한이 없습니다!", status = status.HTTP_403_FORBIDDEN)
+            return Response("권한이 없습니다!", status=status.HTTP_403_FORBIDDEN)
 
 
 # # 댓글 관련 view
 class CommentView(APIView):
     
     def get(self, request, inquiry_id):
-        inquiry = Inquiry.objects.get(id= inquiry_id)
+        inquiry = Inquiry.objects.get(id = inquiry_id)
         comments = inquiry.comment_set.all()
-        serializer = CommentSerializer(comments, many =True)
+        serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, inquiry_id):
@@ -90,7 +88,7 @@ class CommentView(APIView):
 class CommentDetailView(APIView):
 
     def put(self, request, inquiry_id, comment_id):
-        comment = get_object_or_404(Comment, id= comment_id)
+        comment = get_object_or_404(Comment, id = comment_id)
         if request.user == comment.user:
             serializer = CommentCreateSerializer(comment, data = request.data)
             if serializer.is_valid(): 
@@ -99,13 +97,13 @@ class CommentDetailView(APIView):
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
-            return Response("권한이 없습니다", status = status.HTTP_403_FORBIDDEN)
+            return Response("권한이 없습니다", status=status.HTTP_403_FORBIDDEN)
 
     
     def delete(self, request, inquiry_id, comment_id):
-        comment = get_object_or_404(Comment,id= comment_id)
+        comment = get_object_or_404(Comment, id = comment_id)
         if request.user == comment.user:
             comment.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         else:
-            return Response("권한이 없습니다", status = status.HTTP_403_FORBIDDEN)
+            return Response("권한이 없습니다", status=status.HTTP_403_FORBIDDEN)
